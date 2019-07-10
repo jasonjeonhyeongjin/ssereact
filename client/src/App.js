@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
-import { getInitialFlightData } from './DataProvider';
+import { getInitialMonitorData } from './DataProvider';
 import 'react-table/react-table.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: getInitialFlightData()
+      data: getInitialMonitorData()
     };
 
     this.columns = [{
       Header: 'Origin',
       accessor: 'origin'
     }, {
-      Header: 'Flight',
-      accessor: 'flight'
+      Header: 'DataType',
+      accessor: 'datatype'
     }, {
       Header: 'Arrival',
       accessor: 'arrival'
@@ -28,15 +28,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.eventSource.addEventListener('flightStateUpdate', (e) => this.updateFlightState(JSON.parse(e.data)));
-    this.eventSource.addEventListener('flightRemoval', (e) => this.removeFlight(JSON.parse(e.data)));
+    this.eventSource.addEventListener('monitorDataUpdate', (e) => this.updateDataState(JSON.parse(e.data)));
+    this.eventSource.addEventListener('monitorDataRemoval', (e) => this.removeData(JSON.parse(e.data)));
     this.eventSource.addEventListener('closedConnection', () => this.stopUpdates());
   }
 
-  updateFlightState(flightState) {
+  updateDataState(dataState) {
     let newData = this.state.data.map((item) => {
-      if (item.flight === flightState.flight) {
-        item.state = flightState.state;
+      if (item.datatype === dataState.datatype) {
+        item.state = dataState.state;
+        item.arrival = dataState.arrival;
       }
       return item;
     });
@@ -44,8 +45,8 @@ class App extends Component {
     this.setState(Object.assign({}, {data: newData}));
   }
 
-  removeFlight(flightInfo) {
-    const newData = this.state.data.filter((item) => item.flight !== flightInfo.flight);
+  removeData(dataInfo) {
+    const newData = this.state.data.filter((item) => item.datatype !== dataInfo.datatype);
 
     this.setState(Object.assign({}, {data: newData}));
   }

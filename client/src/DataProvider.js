@@ -1,33 +1,33 @@
-export function getInitialFlightData() {
+export function getInitialMonitorData() {
   return [{
-    origin: 'London',
-    flight: 'A123',
-    arrival: '08:15',
+    origin: 'SAPACCOUNT',
+    datatype: 'SAPS',
+    arrival: '',
     state: ''
   }, {
-    origin: 'Berlin',
-    flight: 'D654',
-    arrival: '08:45',
+    origin: 'SAPHR',
+    datatype: 'SAPH',
+    arrival: '',
     state: ''
   }, {
-    origin: 'New York',
-    flight: 'U213',
-    arrival: '09:05',
+    origin: 'SAPFinance',
+    datatype: 'SAPF',
+    arrival: '',
     state: ''
   }, {
-    origin: 'Buenos Aires',
-    flight: 'A987',
-    arrival: '09:30',
+    origin: 'CRMCCBJI',
+    datatype: 'CRMB',
+    arrival: '',
     state: ''
   }, {
-    origin: 'Rome',
-    flight: 'I768',
-    arrival: '10:10',
+    origin: 'CRMCCO',
+    datatype: 'CRMO',
+    arrival: '',
     state: ''
   }, {
-    origin: 'Tokyo',
-    flight: 'G119',
-    arrival: '10:35',
+    origin: 'CRMCCG',
+    datatype: 'CRMG',
+    arrival: '',
     state: ''
   }];
 }

@@ -31,7 +31,7 @@ http.createServer((request, response) => {
 function sendEvents(response, eventHistory) {
   setTimeout(() => {
     if (!response.finished) {
-      const eventString = 'id: 1\nevent: flightStateUpdate\ndata: {"flight": "I768", "state": "landing"}\n\n';
+      const eventString = 'id: 1\nevent: monitorDataUpdate\ndata: {"datatype": "SAPS","arrival":"'+ new Date().toLocaleTimeString()+ '", "state": "Good"}\n\n';
       response.write(eventString);
       eventHistory.push(eventString);
     }
@@ -39,7 +39,23 @@ function sendEvents(response, eventHistory) {
 
   setTimeout(() => {
     if (!response.finished) {
-      const eventString = 'id: 2\nevent: flightStateUpdate\ndata: {"flight": "I768", "state": "landed"}\n\n';
+      const eventString = 'id: 1\nevent: monitorDataUpdate\ndata: {"datatype": "SAPH","arrival":"'+ new Date().toLocaleTimeString()+ '", "state": "Good"}\n\n';
+      response.write(eventString);
+      eventHistory.push(eventString);
+    }
+  }, 4000);
+
+  setTimeout(() => {
+    if (!response.finished) {
+      const eventString = 'id: 1\nevent: monitorDataUpdate\ndata: {"datatype": "SAPF","arrival":"'+ new Date().toLocaleTimeString()+ '","state": "bad"}\n\n';
+      response.write(eventString);
+      eventHistory.push(eventString);
+    }
+  }, 5000);
+
+  setTimeout(() => {
+    if (!response.finished) {
+      const eventString = 'id: 1\nevent: monitorDataUpdate\ndata: {"datatype": "CRMO", "arrival":"'+ new Date().toLocaleTimeString()+ '","state": "Good"}\n\n';
       response.write(eventString);
       eventHistory.push(eventString);
     }
@@ -47,7 +63,24 @@ function sendEvents(response, eventHistory) {
 
   setTimeout(() => {
     if (!response.finished) {
-      const eventString = 'id: 3\nevent: flightRemoval\ndata: {"flight": "I768"}\n\n';
+      const eventString = 'id: 1\nevent: monitorDataUpdate\ndata: {"datatype": "CRMG","arrival":"'+ new Date().toLocaleTimeString() + '", "state": "bad"}\n\n';
+      response.write(eventString);
+      eventHistory.push(eventString);
+    }
+  }, 7000);
+
+  setTimeout(() => {
+    if (!response.finished) {
+      const eventString = 'id: 1\nevent: monitorDataUpdate\ndata: {"datatype": "CRMG", "arrival":"'+ new Date().toLocaleTimeString()+ '","state": "bad"}\n\n';
+      response.write(eventString);
+      eventHistory.push(eventString);
+    }
+  }, 8000);
+
+
+  setTimeout(() => {
+    if (!response.finished) {
+      const eventString = 'id: 1\nevent: monitorDataUpdate\ndata: {"datatype": "SAPF", "arrival":"'+ new Date().toLocaleTimeString()+ '","state": "Good"}\n\n';
       response.write(eventString);
       eventHistory.push(eventString);
     }
@@ -55,10 +88,82 @@ function sendEvents(response, eventHistory) {
 
   setTimeout(() => {
     if (!response.finished) {
-      const eventString = 'id: 4\nevent: closedConnection\ndata: \n\n';
+      const eventString = 'id: 1\nevent: monitorDataUpdate\ndata: {"datatype": "CRMG", "arrival":"'+ new Date().toLocaleTimeString() + '","state": "bad"}\n\n';
+      response.write(eventString);
+      eventHistory.push(eventString);
+    }
+  }, 10000);
+
+
+  setTimeout(() => {
+    if (!response.finished) {
+      const eventString = 'id: 1\nevent: monitorDataUpdate\ndata: {"datatype": "SAPF", "arrival":"'+ new Date().toLocaleTimeString()+ '","state": "Good"}\n\n';
+      response.write(eventString);
+      eventHistory.push(eventString);
+    }
+  }, 11000);
+
+  setTimeout(() => {
+    if (!response.finished) {
+      const eventString = 'id: 1\nevent: monitorDataUpdate\ndata: {"flight": "CRMG", "arrival":"'+ new Date().toLocaleTimeString()+ '","state": "Good"}\n\n';
+      response.write(eventString);
       eventHistory.push(eventString);
     }
   }, 12000);
+
+  setTimeout(() => {
+    if (!response.finished) {
+      const eventString = 'id: 1\nevent: monitorDataUpdate\ndata: {"datatype": "CRMB", "arrival":"'+ new Date().toLocaleTimeString()+ '","state": "Good"}\n\n';
+      response.write(eventString);
+      eventHistory.push(eventString);
+    }
+  }, 13000);
+
+
+  setTimeout(() => {
+    if (!response.finished) {
+      const eventString = 'id: 2\nevent: monitorDataUpdate\ndata: {"datatype": "SAPS", "arrival":"'+ new Date().toLocaleTimeString()+ '","state": "Good"}\n\n';
+      response.write(eventString);
+      eventHistory.push(eventString);
+    }
+  }, 14000);
+
+  setTimeout(() => {
+    if (!response.finished) {
+      const eventString = 'id: 3\nevent: monitorDataRemoval\ndata: {"datatype": "SAPS"}\n\n';
+      response.write(eventString);
+      eventHistory.push(eventString);
+    }
+  }, 15000);
+
+  setTimeout(() => {
+    if (!response.finished) {
+      const eventString = 'id: 3\nevent: monitorDataRemoval\ndata: {"datatype": "CRMG"}\n\n';
+      response.write(eventString);
+      eventHistory.push(eventString);
+    }
+  }, 16000);
+  setTimeout(() => {
+    if (!response.finished) {
+      const eventString = 'id: 3\nevent: monitorDataRemoval\ndata: {"datatype": "CRMO"}\n\n';
+      response.write(eventString);
+      eventHistory.push(eventString);
+    }
+  }, 17000);
+  setTimeout(() => {
+    if (!response.finished) {
+      const eventString = 'id: 3\nevent: monitorDataRemoval\ndata: {"datatype": "SAPF"}\n\n';
+      response.write(eventString);
+      eventHistory.push(eventString);
+    }
+  }, 18000);
+
+  setTimeout(() => {
+    if (!response.finished) {
+      const eventString = 'id: 4\nevent: closedConnection\ndata: \n\n';
+      eventHistory.push(eventString);
+    }
+  }, 19000);
 }
 
 function closeConnection(response) {

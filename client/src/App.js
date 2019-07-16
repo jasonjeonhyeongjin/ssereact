@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import { getInitialMonitorData } from './DataProvider';
+import Sidemenu from './components/Sidemenu';
 import 'react-table/react-table.css';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: getInitialMonitorData()
+      data: getInitialMonitorData(),
+      showStore: true
     };
 
     this.columns = [{
@@ -23,6 +26,7 @@ class App extends Component {
       Header: 'State',
       accessor: 'state'
     }];
+
 
     this.eventSource = new EventSource('http://localhost:5000/events');
   }
@@ -55,17 +59,34 @@ class App extends Component {
     this.eventSource.close();
   }
 
+
+  switchDisplay() {
+
+    console.debug('switchDisplay');
+    var show = this.state.showStore ? false : true ;
+    console.debug('switchDisplay show: ' + show);
+    this.setState({ showStore:show } );
+  }
+
+
+
   render() {
+
+
     return (
       <div className="App">
+      <Sidemenu showStore={this.state.showStore} />
+ 
         <button onClick={() => this.stopUpdates()}>Stop updates</button>
+        <button onClick={() => this.switchDisplay()}>switchDisplay</button>
         <ReactTable
-          data={this.state.data}
           columns={this.columns}
+          data={this.state.data}
+          
         />
       </div>
     );
   }
 }
-
 export default App;
+

@@ -17,9 +17,18 @@ http.createServer((request, response) => {
       'Access-Control-Allow-Origin': '*'
     });
 
-    checkConnectionToRestore(request, response, eventHistory);
+    var i =0;
 
-    sendEvents(response, eventHistory);
+    while(i<10){
+
+      setTimeout(() => {
+        checkConnectionToRestore(request, response, eventHistory);
+        sendEvents(response, eventHistory);
+      }, 1500);
+
+    i++;
+  }
+
   } else {
     response.writeHead(404);
     response.end();  
@@ -165,6 +174,8 @@ function sendEvents(response, eventHistory) {
     }
   }, 19000);
 }
+
+
 
 function closeConnection(response) {
   if (!response.finished) {

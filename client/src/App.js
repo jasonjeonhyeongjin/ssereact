@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import { getInitialMonitorData } from './DataProvider';
-import Sidemenu from './components/Sidemenu';
+//import Sidemenu from './components/Sidemenu';
 import 'react-table/react-table.css';
 
 
@@ -75,7 +75,7 @@ class App extends Component {
 
     return (
       <div className="App">
-      <Sidemenu showStore={this.state.showStore} />
+      {/* <Sidemenu showStore={this.state.showStore} /> */}
  
         <button onClick={() => this.stopUpdates()}>Stop updates</button>
         <button onClick={() => this.switchDisplay()}>switchDisplay</button>

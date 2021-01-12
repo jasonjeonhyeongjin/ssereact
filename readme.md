@@ -7,6 +7,12 @@ This project demonstrates how to use [Server Sent Events](https://html.spec.what
 
 Blog post and in-depth tutorial available here: [Developing Real-Time Web Applications with Server-Sent Events](https://auth0.com/blog/developing-real-time-web-applications-with-server-sent-events/)
 
+Before excute them, type the following command
+
+```shell
+npm update
+```
+
 The project consists of two applications:
 
 - a React application (the client)
